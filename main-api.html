@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Glow Beauty | 글로벌 No.1 K-뷰티 스토어</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
+        body { font-family: 'Pretendard', sans-serif; }
+        .point-green { color: #96c823; }
+        .bg-point-green { background-color: #96c823; }
+        .point-coral { color: #f27474; }
+    </style>
+</head>
+<body class="bg-white">
+
+    <div class="bg-black text-white text-center py-2 text-xs font-bold">
+        📢 글로벌 100만 가입 돌파 기념! 전 세계 무료 배송 이벤트 중 ✈️
+    </div>
+
+    <nav class="sticky top-0 z-50 bg-white border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-2xl font-black text-gray-900 tracking-tighter cursor-pointer" onclick="location.href='/'">
+                    K-GLOW <span class="point-green italic">BEAUTY</span>
+                </div>
+                <div class="hidden md:flex flex-1 mx-10">
+                    <div class="relative w-full">
+                        <input type="text" placeholder="달바 글로벌 베스트셀러 찾기" 
+                               class="w-full border-2 border-point-green rounded-full px-5 py-2 focus:outline-none text-sm">
+                        <button class="absolute right-4 top-2.5 text-point-green">
+                            <i class="fas fa-search fa-lg"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex space-x-6 text-gray-600">
+                    <a href="#" class="flex flex-col items-center"><i class="far fa-user"></i><span class="text-[10px] mt-1">마이</span></a>
+                    <a href="#" class="flex flex-col items-center"><i class="fas fa-shopping-bag"></i><span class="text-[10px] mt-1">장바구니</span></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative bg-gray-100 h-[450px] overflow-hidden">
+        <div class="max-w-6xl mx-auto h-full flex items-center px-4">
+            <div class="z-10 space-y-4">
+                <span class="bg-point-green text-white px-3 py-1 text-sm font-bold">Global Best</span>
+                <h2 class="text-5xl font-extrabold leading-tight">North America <br> Launch Special</h2>
+                <p class="text-gray-600">전 세계 어디서든 2초 안에 만나는 <br>K-Glow Beauty의 고광채 시너지</p>
+                <button class="bg-gray-900 text-white px-8 py-3 rounded-md font-bold hover:bg-black transition">지금 구경하기</button>
+            </div>
+            <div class="absolute right-0 top-0 w-2/3 h-full bg-cover bg-center opacity-80" 
+                 style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?auto=format&fit=crop&q=80&w=1000');">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 max-w-6xl mx-auto px-4">
+        <div class="flex justify-between items-end mb-8">
+            <h3 class="text-2xl font-bold">글로벌 실시간 랭킹 <i class="fas fa-chevron-right text-sm ml-2"></i></h3>
+            <span id="current-time" class="text-sm text-gray-500">조회 중...</span>
+        </div>
+        
+        <div id="product-list" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <p class="col-span-full text-center py-20 text-gray-400">상품을 불러오는 중입니다...</p>
+        </div>
+    </section>
+
+    <section class="bg-gray-50 py-10 mt-20 border-t border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-server text-point-green text-3xl"></i>
+                <div>
+                    <h5 class="font-bold text-sm text-gray-800">24/7 가용성 보장</h5>
+                    <p class="text-xs text-gray-500">Azure Multi-AZ 구성</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-globe text-point-green text-3xl"></i>
+                <div>
+                    <h5 class="font-bold text-sm text-gray-800">글로벌 CDN 가속</h5>
+                    <p class="text-xs text-gray-500">전 세계 2초 로딩</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-shield-alt text-point-green text-3xl"></i>
+                <div>
+                    <h5 class="font-bold text-sm text-gray-800">안전한 데이터 보안</h5>
+                    <p class="text-xs text-gray-500">WAF v2 및 Bastion 적용</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        // 1. 시간 표시 업데이트
+        document.getElementById('current-time').innerText = new Date().toLocaleString() + " 기준";
+
+        // 2. API 호출 및 화면 렌더링
+        async function fetchRankings() {
+            try {
+                const response = await fetch('/api/products/all');
+                const products = await response.json();
+                
+                const listContainer = document.getElementById('product-list');
+                
+                if (products.length === 0) {
+                    listContainer.innerHTML = '<p class="col-span-full text-center py-20">등록된 상품이 없습니다.</p>';
+                    return;
+                }
+
+                listContainer.innerHTML = products.map((product, index) => `
+                    //<div class="group cursor-pointer" onclick="location.href='/api/products/${product.productId}'">
+                    <div class="group cursor-pointer" onclick="location.href='detail.html?id=${product.productId}'">
+                        <div class="relative bg-gray-100 rounded-lg overflow-hidden aspect-square mb-4">
+                            <img src="${product.mainImageUrl}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute top-2 left-2 ${index < 3 ? 'bg-point-green' : 'bg-gray-800'} text-white text-xs font-bold px-2 py-1 rounded">
+                                ${index + 1}위
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-xs mb-1">${product.brandName}</p>
+                        <h4 class="text-sm font-medium h-10 overflow-hidden line-clamp-2">${product.productName}</h4>
+                        <div class="mt-2 flex items-center space-x-2">
+                            ${product.discountRate > 0 ? `<span class="text-point-coral font-bold italic">${product.discountRate}%</span>` : ''}
+                            <span class="font-bold">${Math.floor(product.originalPrice * (1 - product.discountRate/100)).toLocaleString()}원</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error("데이터 로드 실패:", error);
+                document.getElementById('product-list').innerHTML = '<p class="col-span-full text-center py-20 text-red-500">데이터를 불러오는데 실패했습니다.</p>';
+            }
+        }
+
+        fetchRankings();
+    </script>
+</body>
+</html>

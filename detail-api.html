@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Glow Beauty | 상품 상세</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
+        body { font-family: 'Pretendard', sans-serif; }
+        .point-green { color: #96c823; }
+        .bg-point-green { background-color: #96c823; }
+        .point-coral { color: #f27474; }
+        .sticky-bottom { position: fixed; bottom: 0; width: 100%; z-index: 100; }
+    </style>
+</head>
+<body class="bg-white pb-24">
+
+    <header class="border-b border-gray-100 py-4 px-4 sticky top-0 bg-white z-50 flex justify-between items-center">
+        <button onclick="location.href='main.html'"><i class="fas fa-chevron-left text-xl"></i></button>
+        <h1 id="header-title" class="text-sm font-bold truncate px-4">상품 상세</h1>
+        <div class="flex space-x-4">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-shopping-bag"></i>
+        </div>
+    </header>
+
+    <section class="relative aspect-square bg-gray-50">
+        <img id="main-image" src="" alt="Product Image" class="w-full h-full object-cover">
+        <div id="image-pagination" class="absolute bottom-4 right-4 bg-black/50 text-white text-xs px-3 py-1 rounded-full">1 / 1</div>
+    </section>
+
+    <section class="p-5 space-y-4">
+        <div>
+            <span id="brand-name" class="text-blue-600 font-bold text-sm underline decoration-2 underline-offset-4"></span>
+            <h2 id="product-name" class="text-xl font-bold mt-2 leading-tight"></h2>
+            <div class="flex items-center space-x-2 mt-1">
+                <div class="flex text-yellow-400 text-xs">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-xs text-gray-400 font-bold underline">12,402건 리뷰</span>
+            </div>
+        </div>
+
+        <div class="border-b border-gray-100 pb-5">
+            <div class="flex items-baseline space-x-2">
+                <span id="discount-rate" class="text-2xl font-black point-coral italic"></span>
+                <span id="current-price" class="text-2xl font-black"></span>
+                <span id="original-price" class="text-gray-400 line-through text-sm"></span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+                <span class="bg-indigo-50 text-indigo-500 text-[10px] font-bold px-2 py-1 rounded">무료배송</span>
+                <span class="bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-1 rounded">증정 이벤트</span>
+            </div>
+        </div>
+
+        <div class="bg-blue-50 rounded-xl p-4 flex items-start space-x-3">
+            <i class="fas fa-bolt text-blue-500 mt-1"></i>
+            <div>
+                <p class="text-xs font-bold text-blue-900 uppercase tracking-tighter">Global Acceleration Powered by Azure</p>
+                <p class="text-[11px] text-blue-700 mt-1">전 세계 어디서든 2초 이내 결제 완료! <br> 고가용성 아키텍처로 쇼핑을 보장합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="border-8 border-gray-50">
+
+    <div class="flex border-b border-gray-100 sticky top-[53px] bg-white z-40">
+        <div class="flex-1 py-4 text-center border-b-2 border-black font-bold text-sm">상세정보</div>
+        <div class="flex-1 py-4 text-center text-gray-400 text-sm">리뷰</div>
+        <div class="flex-1 py-4 text-center text-gray-400 text-sm">Q&A</div>
+    </div>
+
+    <article class="p-6 space-y-12">
+        <div class="text-center space-y-6">
+            <h3 class="text-2xl font-black leading-tight text-gray-900" id="sub-title"></h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+                전 세계 100만 가입자가 선택한 K-Glow의 No.1 베스트셀러.<br>
+                화이트 트러플의 영양을 느껴보세요.
+            </p>
+            <div id="detail-images-container" class="space-y-4"></div>
+        </div>
+    </article>
+
+    <div class="sticky-bottom bg-white border-t border-gray-100 p-4 flex space-x-3 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+        <button class="w-12 h-12 border border-gray-200 rounded-md flex items-center justify-center text-gray-400">
+            <i class="far fa-heart"></i>
+        </button>
+        <button class="flex-1 bg-gray-900 text-white font-bold rounded-md hover:bg-black transition">구매하기</button>
+    </div>
+
+    <script>
+        // // 1. WAS 서버 주소 설정 (본인의 Azure WAS IP로 수정하세요)
+        // const WAS_BASE_URL = "http://YOUR_AZURE_WAS_IP:8080";
+
+        // 2. URL에서 productId 추출 (?id=1)
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        async function fetchDetail() {
+            if (!productId) return;
+
+            try {
+                const response = await fetch(`/api/products/${productId}`);
+                const data = await response.json();
+
+                // JSON 구조 매핑
+                const p = data.product;
+                const images = data.imges; // JSON에 'imges'라고 오타가 있어 그대로 맞춤
+
+                // 데이터 반영
+                document.getElementById('header-title').innerText = p.productName;
+                document.title = `${p.productName} | K-Glow Beauty`;
+                document.getElementById('main-image').src = p.mainImageUrl;
+                document.getElementById('brand-name').innerText = p.brandName;
+                document.getElementById('product-name').innerText = p.productName;
+                document.getElementById('sub-title').innerHTML = p.subTitle.replace('\n', '<br>');
+                
+                // 가격 정보
+                document.getElementById('discount-rate').innerText = p.discountRate > 0 ? `${p.discountRate}%` : '';
+                document.getElementById('current-price').innerText = `${p.currentPrice.toLocaleString()}원`;
+                document.getElementById('original-price').innerText = p.discountRate > 0 ? `${p.originalPrice.toLocaleString()}원` : '';
+
+                // 상세 이미지 리스트 (imges 키 사용)
+                const imgContainer = document.getElementById('detail-images-container');
+                if (images && images.length > 0) {
+                    imgContainer.innerHTML = images.map(url => `
+                        <img src="${url}" class="w-full rounded-2xl shadow-lg">
+                    `).join('');
+                    document.getElementById('image-pagination').innerText = `1 / ${images.length + 1}`;
+                }
+
+            } catch (error) {
+                console.error("데이터 로드 실패:", error);
+            }
+        }
+
+        fetchDetail();
+    </script>
+</body>
+</html>
