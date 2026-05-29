@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Glow Beauty | 마이페이지</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand" href="index.html">K-GLOW <span>BEAUTY</span></a>
+      <div class="search">
+        <input type="search" placeholder="상품명 또는 브랜드 검색" disabled>
+        <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <div class="nav-actions">
+        <a class="icon-link" href="login.html" title="로그인" data-user-link><i class="fa-regular fa-user"></i><span data-user-label>로그인</span></a>
+        <a class="icon-link" href="inquiry.html" title="문의" data-inquiry-link hidden><i class="fa-regular fa-pen-to-square"></i><span>문의</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="form-shell">
+    <h1>마이페이지</h1>
+    <p class="muted">회원 정보와 문의 내역을 확인하세요.</p>
+
+    <section style="margin-top: 28px;" data-profile></section>
+
+    <section aria-label="내 문의">
+      <div class="section-head" style="margin-top: 42px;">
+        <div>
+          <h2>내 문의</h2>
+          <p class="muted">최근 작성한 문의를 확인할 수 있습니다.</p>
+        </div>
+        <a class="button secondary" href="inquiry.html" data-inquiry-link hidden>문의 작성</a>
+      </div>
+      <div class="inquiry-list" data-my-inquiries></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">K-GLOW BEAUTY · My Page</div>
+  </footer>
+
+  <script src="assets/api.js"></script>
+  <script src="assets/mypage.js"></script>
+</body>
+</html>

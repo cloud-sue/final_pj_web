@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Glow Beauty | K-뷰티 쇼핑몰</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <div class="promo">글로벌 100만 가입 돌파 기념 전 세계 무료 배송 이벤트</div>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand" href="index.html">K-GLOW <span>BEAUTY</span></a>
+      <form class="search" data-search-form>
+        <input data-search type="search" placeholder="브랜드 또는 상품명 검색">
+        <button type="submit" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+      <div class="nav-actions">
+        <a class="icon-link" href="login.html" title="로그인" data-user-link><i class="fa-regular fa-user"></i><span data-user-label>로그인</span></a>
+        <a class="icon-link" href="inquiry.html" title="문의" data-inquiry-link hidden><i class="fa-regular fa-pen-to-square"></i><span>문의</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Global Best</span>
+          <h1>K-Beauty picks for every glow</h1>
+          <p>스킨케어 베스트셀러부터 데일리 선케어까지, 지금 가장 많이 찾는 K-뷰티 상품을 빠르게 둘러보세요.</p>
+          <a class="button primary" href="#products">상품 보기</a>
+        </div>
+        <div class="hero-image" role="img" aria-label="K-뷰티 제품과 메이크업 도구"></div>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="section-head">
+        <div>
+          <h2>글로벌 실시간 랭킹</h2>
+          <p>지금 가장 많이 찾는 K-뷰티 베스트셀러를 만나보세요.</p>
+        </div>
+        <p data-load-status>상품을 불러오는 중입니다...</p>
+      </div>
+
+      <div class="filters" aria-label="상품 필터">
+        <button class="chip is-active" type="button" data-filter="all">전체</button>
+        <button class="chip" type="button" data-filter="best">글로벌 베스트</button>
+        <button class="chip" type="button" data-filter="sale">할인 상품</button>
+      </div>
+
+      <div class="product-grid" data-product-grid>
+        <p class="notice">상품을 불러오는 중입니다...</p>
+      </div>
+    </section>
+
+    <section class="benefit-band" aria-label="서비스 장점">
+      <div class="benefits">
+        <div class="benefit">
+          <i class="fa-solid fa-server"></i>
+          <div><strong>빠른 상품 탐색</strong><span>인기 상품을 한눈에 확인</span></div>
+        </div>
+        <div class="benefit">
+          <i class="fa-solid fa-globe"></i>
+          <div><strong>글로벌 배송</strong><span>전 세계 어디서든 편하게 주문</span></div>
+        </div>
+        <div class="benefit">
+          <i class="fa-solid fa-shield-halved"></i>
+          <div><strong>간편한 회원 서비스</strong><span>문의와 쇼핑 활동을 손쉽게 관리</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">K-GLOW BEAUTY · Curated K-Beauty Store</div>
+  </footer>
+
+  <script src="assets/api.js"></script>
+  <script src="assets/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Glow Beauty | 회원가입</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand" href="index.html">K-GLOW <span>BEAUTY</span></a>
+      <div class="search">
+        <input type="search" placeholder="상품명 또는 브랜드 검색" disabled>
+        <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <div class="nav-actions">
+        <a class="icon-link" href="login.html" title="로그인" data-user-link><i class="fa-regular fa-user"></i><span data-user-label>로그인</span></a>
+        <a class="icon-link" href="inquiry.html" title="문의" data-inquiry-link hidden><i class="fa-regular fa-pen-to-square"></i><span>문의</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="form-shell">
+    <h1>회원가입</h1>
+    <p class="muted">K-GLOW BEAUTY 회원이 되어 맞춤 쇼핑을 시작하세요.</p>
+
+    <form class="form" data-register-form>
+      <div class="field">
+        <label for="name">이름</label>
+        <input id="name" name="name" type="text" placeholder="홍길동" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="email">이메일</label>
+        <input id="email" name="email" type="email" placeholder="member@kbeauty.com" autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="password">비밀번호</label>
+        <input id="password" name="password" type="password" placeholder="비밀번호" autocomplete="new-password">
+      </div>
+      <div class="field">
+        <label for="passwordConfirm">비밀번호 확인</label>
+        <input id="passwordConfirm" name="passwordConfirm" type="password" placeholder="비밀번호 확인" autocomplete="new-password">
+      </div>
+      <button class="button primary" type="submit">가입하기</button>
+      <a class="button secondary" href="login.html">로그인으로 돌아가기</a>
+      <p class="form-message" data-register-message></p>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">K-GLOW BEAUTY · Register</div>
+  </footer>
+
+  <script src="assets/api.js"></script>
+  <script src="assets/auth.js"></script>
+</body>
+</html>
